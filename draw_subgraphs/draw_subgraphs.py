@@ -102,17 +102,34 @@ def draw_graph(offset, edges, subedges, poses):
 
 def main():
 
+    args = sys.argv[:]
+
+    if "--reverse" in args:
+        is_reverse = True
+        args.remove("--reverse")
+    else:
+        is_reverse = False
+
+    if len(args) <= 2:
+        print("Usage: python {0} ".format(args[0]) + \
+              "<edge list> <color list> [<pos list>] [--reverse]")
+        print("       '--reverse' option reverses each line of the color list")
+        exit(0)
+
+    edge_list_filename = args[1]
+    color_list_filename = args[2]
+
+    if len(args) >= 4: # read pos file if exists
+        pos_filename = args[3]
+    else: # pos file does not exist
+        pos_filename = ""
+
     margin = (20, 20)
     numofx = 6
 
-    if len(sys.argv) <= 2:
-        print("Usage: python {0} ".format(sys.argv[0]) + \
-              "<edge list> <color list> [<pos list>]")
-        exit(0)
-
     edges = []
     vertices = set()
-    with open(sys.argv[1]) as f:
+    with open(edge_list_filename) as f:
         linenum = 1
         for line in f:
             ar = line.strip().split()
@@ -130,9 +147,7 @@ def main():
     num_n = len(vertices) # number of vertices
 
     poses = []
-    if len(sys.argv) >= 4: # read pos file if exists
-        pos_filename = sys.argv[3]
-    else: # pos file does not exist
+    if pos_filename == "": # pos file does not exist
         make_pos_list(edges)
         pos_filename = "pos_list_for_draw_subgraphs.txt"
 
@@ -162,7 +177,7 @@ def main():
     count = 0
 
     valid_values = list(map(str, range(len(color_names))))
-    with open(sys.argv[2]) as f:
+    with open(color_list_filename) as f:
         linenum = 1
         # draw each subgraph
         for line in f:
@@ -174,6 +189,8 @@ def main():
                           file = sys.stderr)
                     exit(1)
             subedges = list(map(int, ar))
+            if is_reverse:
+                subedges.reverse()
             if len(subedges) < num_m:
                 print("Line {} has {} values, but ".format(linenum, len(subedges))
                       + "it must be {}, ".format(num_m)
