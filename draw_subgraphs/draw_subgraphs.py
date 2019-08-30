@@ -7,6 +7,9 @@ from __future__ import print_function, unicode_literals,\
 import sys
 import subprocess
 
+#color_names = ["black", "red", "blue", "green"]
+color_names = ["black", "red", "green", "blue", "yellow", "purple", "orange", "cyan"]
+
 def make_neato_file(edges, fout):
     print("graph G {", file = fout)
     for e in edges:
@@ -54,8 +57,6 @@ def draw_graph(offset, edges, subedges, poses):
 
     text = ""
 
-    #color_names = ["black", "red", "blue", "green"]
-    color_names = ["black", "red", "green", "blue"]
     radius = 8
 
     count = 1
@@ -112,11 +113,18 @@ def main():
     edges = []
     vertices = set()
     with open(sys.argv[1]) as f:
+        linenum = 1
         for line in f:
             ar = line.strip().split()
+            if len(ar) < 2:
+                print("The number of elements at Line {} ".format(linenum)
+                      + "in the graph file is {}.".format(len(ar)), file = sys.stderr)
+                print("It must be two.", file = sys.stderr)
+                exit(1)
             edges.append((int(ar[0]), int(ar[1])))
             vertices.add(int(ar[0]))
             vertices.add(int(ar[1]))
+            linenum += 1
 
     num_m = len(edges) # number of edges
     num_n = len(vertices) # number of vertices
@@ -128,24 +136,52 @@ def main():
         make_pos_list(edges)
         pos_filename = "pos_list_for_draw_subgraphs.txt"
 
+    linenum = 1
     with open(pos_filename) as f:
         for line in f:
             ar = line.strip().split()
+            if len(ar) < 2:
+                print("The number of elements at Line {} ".format(linenum)
+                      + "in the pos file is {}.".format(len(ar)), file = sys.stderr)
+                print("It must be two.", file = sys.stderr)
+                exit(1)
             poses.append((int(ar[0]), int(ar[1])))
+            linenum += 1
+
+    if linenum - 1 < num_n:
+        print("The number of lines in the pos file"
+              + " is {}.".format(linenum - 1), file = sys.stderr)
+        print("It must be {}, which is the number of vertices.".format(num_n),
+              file = sys.stderr)
+        exit(1)
 
     axmax = margin[0]
     aymax = margin[1]
     astr = ""
     offset = [margin[0], margin[1]]
     count = 0
+
+    valid_values = list(map(str, range(len(color_names))))
     with open(sys.argv[2]) as f:
+        linenum = 1
         # draw each subgraph
         for line in f:
             ar = line.strip().split()
-            subedges = map(int, ar)
+            for a in ar:
+                if a not in valid_values:
+                    print('Line {} has value "{}", but '.format(linenum, a)
+                          + 'it must be 0,...,{}.'.format(len(color_names) - 1),
+                          file = sys.stderr)
+                    exit(1)
+            subedges = list(map(int, ar))
+            if len(subedges) < num_m:
+                print("Line {} has {} values, but ".format(linenum, len(subedges))
+                      + "it must be {}, ".format(num_m)
+                      + "which is the number of edges.", file = sys.stderr)
+                exit(1)
             for i in range(len(subedges)):
                 if subedges[i] == 0:
-                    subedges[i] = -1
+                    subedges[i] = -1 # convert solid line to dotted line
             (st, xmax, ymax) = draw_graph(offset, edges, subedges, poses)
             if axmax < offset[0] + xmax + margin[0]:
                 axmax = offset[0] + xmax + margin[0]
@@ -158,6 +194,7 @@ def main():
                 offset[0] = margin[0]
 
             astr += st
+            linenum += 1
 
     print('<svg xmlns="http://www.w3.org/2000/svg" ', end="")
     print('width="{0}" height="{1}">'.format(axmax + margin[0], aymax + margin[1]))
