@@ -23,13 +23,7 @@ int main() {
 
     // SAPPOROBDD helper functions
     ZBDD z2 = getSingleton(1);
-
-    //std::cout << (z1 == z3 ? "z1 == z3" : "z1 != z3") << std::endl;
-
     ZBDD z3 = getChild1(z2);
-
-    //std::cout << "z3 is" << (isConstant(z3) ? " " : " not ") <<
-    //    "constant" << std::endl;
 
     // tdzdd functions
 
