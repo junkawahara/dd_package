@@ -110,10 +110,15 @@ def main():
     else:
         is_reverse = False
 
+    if "--black" in args:
+        color_names[1] = "black"
+        args.remove("--black")
+
     if len(args) <= 2:
         print("Usage: python {0} ".format(args[0]) + \
               "<edge list> <color list> [<pos list>] [--reverse]")
-        print("       '--reverse' option reverses each line of the color list")
+        print("  --reverse   each line of the color list")
+        print("  --black     set the first color to black")
         exit(0)
 
     edge_list_filename = args[1]
