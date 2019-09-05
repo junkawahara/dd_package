@@ -1,0 +1,5 @@
+VertexLabel	True	頂点番号ラベルを付けるかどうか（True or False）
+XMargin	20	横方向マージン
+YMargin	20	縦方向マージン
+NumberOfGraphsPerLine	6	1行当たりのグラフ個数
+WidthPerGraph	90.0	グラフ1個の幅（ピクセル）

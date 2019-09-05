@@ -19,3 +19,5 @@ svg 形式のファイルは web ブラウザ等で開くことができる。
 ```
 python draw_subgraphs.py example_grid2x2.txt subgraphs.txt --reverse > example.svg
 ```
+
+'--black' オプションを付けると、1色目を赤色ではなくて黒色に変更することができる。
