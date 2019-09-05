@@ -1,4 +1,4 @@
-OPT = -O3 -DB_64 -I.
+OPT = -O3 -DB_64 -I. -ISAPPOROBDD
 
 main: SAPPOROBDD/bddc.o SAPPOROBDD/BDD.o SAPPOROBDD/ZBDD.o
 	g++ $(OPT) program.cpp SAPPOROBDD/bddc.o SAPPOROBDD/BDD.o SAPPOROBDD/ZBDD.o -o program
