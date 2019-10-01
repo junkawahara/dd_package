@@ -149,15 +149,23 @@ def main():
     else:
         is_reverse = False
 
+    if "--edgenumber" in args:
+        is_edge_number = True
+        args.remove("--edgenumber")
+    else:
+        is_edge_number = False
+
     if "--black" in args:
         color_names[1] = "black"
         args.remove("--black")
 
     if len(args) <= 2:
         print("Usage: python {0} ".format(args[0]) + \
-              "<edge list> <color list> [<pos list>] [--reverse]")
-        print("  --reverse   each line of the color list")
-        print("  --black     set the first color to black")
+              "<edge list> <color list> [<pos list>] [--reverse]" + \
+              " [--black] [--edgenumber]")
+        print("  --reverse    each line of the color list")
+        print("  --black      set the first color to black")
+        print("  --edgenumber specify subgraph by the edge number (1-origin)")
         exit(0)
 
     edge_list_filename = args[1]
@@ -232,13 +240,21 @@ def main():
         # draw each subgraph
         for line in f:
             ar = line.strip().split()
-            for a in ar:
-                if a not in valid_values:
-                    print('Line {} has value "{}", but '.format(linenum, a)
-                          + 'it must be 0,...,{}.'.format(len(color_names) - 1),
-                          file = sys.stderr)
-                    exit(1)
-            subedges = list(map(int, ar))
+            if is_edge_number:
+                subedges = []
+                for e in range(1, num_m + 1):
+                    if str(e) in ar:
+                        subedges.append(1)
+                    else:
+                        subedges.append(0)
+            else:
+                for a in ar:
+                    if a not in valid_values:
+                        print('Line {} has value "{}", but '.format(linenum, a)
+                              + 'it must be 0,...,{}.'.format(len(color_names) - 1),
+                              file = sys.stderr)
+                        exit(1)
+                subedges = list(map(int, ar))
             if is_reverse:
                 subedges.reverse()
             if len(subedges) < num_m:
