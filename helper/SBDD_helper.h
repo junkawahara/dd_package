@@ -482,7 +482,10 @@ int sbddextended_readLine_inner(char* buf, FILE* fp)
 
 class ReadCharObject {
 protected:
-    enum Mode {STREAM, FP, STRING};
+    static const int STREAM = 0;
+    static const int FP = 1;
+    static const int STRING = 2;
+    typedef int Mode;
 
     Mode mode_;
     std::istream* ist_;
@@ -492,26 +495,26 @@ protected:
 
 public:
     ReadCharObject()
-        : mode_(Mode::FP), ist_(NULL), st_(NULL), stpos_(0), stlen_(0) { }
+        : mode_(FP), ist_(NULL), st_(NULL), stpos_(0), stlen_(0) { }
 
     ReadCharObject(std::istream* ist)
-        : mode_(Mode::STREAM), ist_(ist), st_(NULL), stpos_(0), stlen_(0) { }
+        : mode_(STREAM), ist_(ist), st_(NULL), stpos_(0), stlen_(0) { }
 
     ReadCharObject(const std::string& st)
-        : mode_(Mode::STRING), ist_(NULL), st_(st.c_str()), stpos_(0),
+        : mode_(STRING), ist_(NULL), st_(st.c_str()), stpos_(0),
           stlen_(static_cast<llint>(st.length())) { }
 
     ReadCharObject(const char* st)
-        : mode_(Mode::STRING), ist_(NULL), st_(st), stpos_(0),
+        : mode_(STRING), ist_(NULL), st_(st), stpos_(0),
           stlen_((st_ != NULL) ? strlen(st_) : 0) { }
 
     int operator()(FILE* fp) {
         switch (mode_) {
-        case Mode::STREAM:
+        case STREAM:
             return ist_->get();
-        case Mode::FP:
+        case FP:
             return fgetc(fp);
-        case Mode::STRING:
+        case STRING:
             if (stpos_ >= stlen_) {
                 return -1;
             } else {
@@ -540,7 +543,7 @@ public:
     bool operator()(char* buf, FILE* fp) {
         std::string str;
         switch (mode_) {
-        case Mode::STREAM:
+        case STREAM:
             if (!std::getline(*ist_, str)) {
                 return false;
             }
@@ -551,9 +554,9 @@ public:
             }
             strcpy(buf, str.c_str());
             return true;
-        case Mode::FP:
+        case FP:
             return sbddextended_readLine_inner(buf, fp) != 0;
-        case Mode::STRING:
+        case STRING:
             if (stpos_ >= stlen_) {
                 return false;
             } else {
