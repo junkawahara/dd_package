@@ -7,6 +7,10 @@
 * [TdZdd](https://github.com/kunisura/TdZdd)（岩下 洋哲氏）
 
 を、使いやすいようにまとめたものです。
+SAPPOROBDD は BDD/ZDD の演算ライブラリ、
+SAPPOROBDD helper は SAPPOROBDD を使いやすくするための補助ライブラリ、
+TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
+
 SAPPOROBDD helper と TdZdd は web 上で公開されているライブラリですが、
 SAPPOROBDD はまだ公開されていないライブラリですので、
 取扱いに注意してください。
@@ -36,5 +40,5 @@ make でコンパイルして実行できる状態になっています。
 ## マニュアル
 
 * [SAPPOROBDD マニュアル](http://www.lab2.kuis.kyoto-u.ac.jp/jkawahara/dd/BDD+.pdf)
-* [SAPPOROBDD helper マニュアル](https://github.com/junkawahara/sbdd_helper) (マニュアルは執筆中のため、まだほとんど情報がありません)
-* [TdZdd の解説論文](http://doi.org/10.11309/jssst.34.3_97) [ユーザガイド（英語）](http://kunisura.github.io/TdZdd/doc/index.html)
+* [SAPPOROBDD helper マニュアル](https://github.com/junkawahara/sbdd_helper) (執筆中のため、まだほとんど情報がありません)
+* [TdZdd の解説論文](http://doi.org/10.11309/jssst.34.3_97) / [ユーザガイド（英語）](http://kunisura.github.io/TdZdd/doc/index.html)
