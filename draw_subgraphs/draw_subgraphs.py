@@ -1,13 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
-from __future__ import print_function, unicode_literals,\
-    absolute_import, division
 
 import os
 import sys
-import codecs
 import subprocess
+
+if sys.version_info[0] <= 2:
+    print('require python 3')
+    exit(1)
 
 #color_names = ["black", "red", "blue", "green"]
 color_names = ["black", "red", "green", "blue", "yellow", "purple", "orange", "cyan"]
@@ -16,7 +16,7 @@ class Config:
         self.elements = {}
 
     def load_from_file(self, filename):
-        with codecs.open(filename, 'r', 'utf-8') as f:
+        with open(filename) as f:
             for line in f:
                 if not line.startswith('#'):
                     ar = line.strip().split('\t')
