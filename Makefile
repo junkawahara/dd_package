@@ -1,16 +1,7 @@
-OPT = -O3 -DB_64 -I. -ISAPPOROBDD
+OPT = -O3 -DB_64 -I. -ISAPPOROBDD/include -ITdZdd/include
 
-main: SAPPOROBDD/bddc.o SAPPOROBDD/BDD.o SAPPOROBDD/ZBDD.o
-	g++ $(OPT) program.cpp SAPPOROBDD/bddc.o SAPPOROBDD/BDD.o SAPPOROBDD/ZBDD.o -o program
-
-SAPPOROBDD/bddc.o: SAPPOROBDD/bddc.c SAPPOROBDD/bddc.h
-	gcc $(OPT) SAPPOROBDD/bddc.c -c -o SAPPOROBDD/bddc.o
-
-SAPPOROBDD/BDD.o: SAPPOROBDD/BDD.cc SAPPOROBDD/BDD.h
-	g++ $(OPT) SAPPOROBDD/BDD.cc -c -o SAPPOROBDD/BDD.o
-
-SAPPOROBDD/ZBDD.o: SAPPOROBDD/ZBDD.cc SAPPOROBDD/ZBDD.h
-	g++ $(OPT) SAPPOROBDD/ZBDD.cc -c -o SAPPOROBDD/ZBDD.o
+main: main.cpp SAPPOROBDD/lib/BDD64.a
+	g++ $(OPT) main.cpp SAPPOROBDD/lib/BDD64.a -o main
 
 clean:
-	rm -rf *.o SAPPOROBDD/*.o
+	rm -rf *.o
