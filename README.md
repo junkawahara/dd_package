@@ -29,6 +29,7 @@ sh downloader.sh
 
 このスクリプトを実行すると、your_program ディレクトリの中に、
 SAPPOROBDD、sbdd_helper、TdZdd がダウンロードされます。
+また、サンプル用の Makefile と main.cpp もダウンロードされます。
 
 SAPPOROBDD は手動でビルドする必要があります。
 
