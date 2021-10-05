@@ -29,7 +29,7 @@ sh downloader.sh
 
 このスクリプトを実行すると、your_program ディレクトリの中に、
 SAPPOROBDD、sbdd_helper、TdZdd がダウンロードされます。
-また、サンプル用の Makefile と main.cpp もダウンロードされます。
+また、サンプル用の `Makefile` と `main.cpp` もダウンロードされます。
 
 SAPPOROBDD は手動でビルドする必要があります。
 
@@ -37,21 +37,20 @@ SAPPOROBDD は手動でビルドする必要があります。
 cd SAPPOROBDD/src/
 sh INSTALL
 cd ../../
+ls SAPPOROBDD/lib
+# BDD64.a が表示されれば成功
 ```
 
 ビルドに成功すると、SAPPOROBDD/lib ディレクトリの中に、BDD64.a が作成されます。
 
+ダウンロードされた `Makefile` と `main.cpp` ファイルはサンプルプログラムです。
+make でコンパイルして実行できる状態になっています。
+
 ```
-ls SAPPOROBDD/lib
-# BDD64.a が表示されれば成功
-cp template.cpp main.cpp
 make
 ./main
 ```
 
-（template.cpp からコピーした）`main.cpp`
-ファイルはサンプルプログラムです。
-make でコンパイルして実行できる状態になっています。
 `./main` を実行して、"program works correctly" が出力されると、
 正しくコンパイルできています。
 
