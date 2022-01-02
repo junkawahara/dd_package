@@ -62,6 +62,7 @@ make
 
 ## マニュアル、リンク
 
+* [ZDD の実装に関する情報](https://github.com/junkawahara/dd_documents)
 * [SAPPOROBDD マニュアル](https://github.com/Shin-ichi-Minato/SAPPOROBDD/raw/main/man/BDD%2B.pdf) ダウンロードしたパッケージの SAPPOROBDD/man/BDD+.pdf に入っています。
 * [SAPPOROBDD helper マニュアル](https://github.com/junkawahara/sbdd_helper)
-* [TdZdd の解説論文](http://doi.org/10.11309/jssst.34.3_97) / [ユーザガイド（英語）](http://kunisura.github.io/TdZdd/doc/index.html)
+* [TdZdd の解説論文](https://www.jstage.jst.go.jp/article/jssst/34/3/34_3_97/_article/-char/ja/) / [ユーザガイド（英語）](http://kunisura.github.io/TdZdd/doc/index.html)
