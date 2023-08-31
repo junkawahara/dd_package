@@ -6,18 +6,16 @@
 * [SAPPOROBDD helper](https://github.com/junkawahara/sbdd_helper)（川原）
 * [TdZdd](https://github.com/kunisura/TdZdd)（岩下 洋哲氏）
 
-を一度にダウンロード/アップデートするためのスクリプトです。
+を一度にダウンロードするためのスクリプトです。
 SAPPOROBDD は BDD/ZDD の演算ライブラリ、
 SAPPOROBDD helper は SAPPOROBDD を使いやすくするための補助ライブラリ、
 TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 
-2021/9以前のユーザ向け: dd_package の旧バージョンについては old_version タグを参照してください。旧バージョンを使い続けるのはお勧めしません。
-
 ## パッケージの導入
 
 コマンドラインから行います（現在のところ、Windows/Cygwin 環境のみで確認）。
-wget, git コマンドが必要です。
-以下のコマンドを実行します。
+git コマンドが必要です。
+以下のコマンドを実行します。または [downloader.sh](downloader.sh) を手動でダウンロードして実行してください。
 
 ```
 # your_program は好きな名前
@@ -27,7 +25,7 @@ wget https://github.com/junkawahara/dd_package/raw/main/downloader.sh
 sh downloader.sh
 ```
 
-このスクリプトを実行すると、your_program ディレクトリの中に、
+`downloader.sh` スクリプトを実行すると、your_program ディレクトリの中に、
 SAPPOROBDD、sbdd_helper、TdZdd がダウンロードされます。
 また、サンプル用の `Makefile` と `main.cpp` もダウンロードされます。
 
