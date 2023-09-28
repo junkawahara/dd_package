@@ -14,6 +14,9 @@
 
 #include "sbdd_helper/SBDD_helper_tdzdd.h"
 
+// Delete commentout if using GMP
+// #include <gmpxx.h>
+
 using namespace tdzdd;
 using namespace sbddh;
 
@@ -45,6 +48,10 @@ int main() {
               && z4.Card() == 3 && dd2.zddCardinality() == "3");
     std::cout << "program " << (b ? "works" : "does not work")
               << " correctly" << std::endl;
+
+    // GMP code example
+    // DDIndex<int> ddindex(z4);
+    // std::cout << "Card = " << ddindex.countMP() << std::endl;
 
     return 0;
 }
