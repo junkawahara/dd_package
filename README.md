@@ -14,7 +14,7 @@ TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 ## パッケージの導入
 
 コマンドラインから行います（現在のところ、Windows/Cygwin 環境のみで確認）。
-git コマンドが必要です。
+wget と git コマンドが実行できる必要があります。
 以下のコマンドを実行します。または [downloader.sh](https://raw.githubusercontent.com/junkawahara/dd_package/main/downloader.sh) を手動でダウンロードして実行してください。
 
 ```

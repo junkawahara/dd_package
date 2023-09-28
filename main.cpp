@@ -12,6 +12,8 @@
 #include "tdzdd/eval/ToZBDD.hpp"
 #include "tdzdd/spec/SapporoZdd.hpp"
 
+#include "sbdd_helper/SBDD_helper_tdzdd.h"
+
 using namespace tdzdd;
 using namespace sbddh;
 
@@ -34,10 +36,10 @@ int main() {
     DdStructure<2> dd1(sc); // representing {{1, 2}, {1, 3}, {2, 3}}
 
     // translate tdzdd to SAPPOROBDD (require including eval/ToZBDD.hpp)
-    ZBDD z4 = dd1.evaluate(ToZBDD());
+    ZBDD z4 = tdzdd2szbdd(dd1);
 
     // translate SAPPOROBDD to tdzdd (require including spec/SapporoZdd.hpp)
-    DdStructure<2> dd2 = DdStructure<2>(SapporoZdd(z4));
+    DdStructure<2> dd2 = sbdd2tdzdd(z4);
 
     bool b = (z1 == z2 && isConstant(z3) && dd1.zddCardinality() == "3"
               && z4.Card() == 3 && dd2.zddCardinality() == "3");
