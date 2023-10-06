@@ -11,9 +11,17 @@ SAPPOROBDD は BDD/ZDD の演算ライブラリ、
 SAPPOROBDD helper は SAPPOROBDD を使いやすくするための補助ライブラリ、
 TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 
+## 対応環境
+
+以下の環境で動作を確認しています。
+
+* Windows 10 + Cygwin + gcc 11.4.0
+* Mac 12.5.1 + gcc (clang) 13.1.6
+* Linux Ubuntu 22.04 + gcc 11.4.0
+
 ## パッケージの導入
 
-コマンドラインから行います（現在のところ、Windows/Cygwin 環境のみで確認）。
+コマンドラインから行います。
 wget と git コマンドが実行できる必要があります。
 以下のコマンドを実行します。または [downloader.sh](https://raw.githubusercontent.com/junkawahara/dd_package/main/downloader.sh) を手動でダウンロードして実行してください。
 
