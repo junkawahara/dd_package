@@ -1,3 +1,32 @@
+if ! type git > /dev/null 2>&1; then
+    echo "Install git before running this script."
+    exit
+fi
+
+if ! type make > /dev/null 2>&1; then
+    echo "Install make before running this script."
+    exit
+fi
+
+if ! type curl > /dev/null 2>&1; then
+    echo "Install curl before running this script."
+    exit
+fi
+
+if [ x"$1" = 'x--update' ]; then
+
+
+cd SAPPOROBDD
+git pull
+cd ../sbdd_helper
+git pull
+cd ../TdZdd
+git pull
+cd ..
+
+
+else # not update
+
 if [ -e SAPPOROBDD ]; then
     echo "SAPPOROBDD already exists."
 else
@@ -22,13 +51,28 @@ fi
 if [ -e Makefile ]; then
     echo "Makefile already exists."
 else
-    wget https://github.com/junkawahara/dd_package/raw/main/Makefile
+    curl -OL -Ss https://github.com/junkawahara/dd_package/raw/main/Makefile
     if [ $? -ne 0 ]; then exit; fi
 fi
 
 if [ -e main.cpp ]; then
     echo "main.cpp already exists."
 else
-    wget https://github.com/junkawahara/dd_package/raw/main/main.cpp
+    curl -OL -Ss https://github.com/junkawahara/dd_package/raw/main/main.cpp
     if [ $? -ne 0 ]; then exit; fi
 fi
+
+# Fix SAPPOROBDD so that X11 does not get compiled.
+
+cp SAPPOROBDD/src/BDD+/Makefile SAPPOROBDD/src/BDD+/Makefile.bak
+sed -i -e 's#\$(DIR)/src/BDDXc/\*_32.o##' SAPPOROBDD/src/BDD+/Makefile
+sed -i -e 's#\$(DIR)/src/BDDXc/\*_64.o##' SAPPOROBDD/src/BDD+/Makefile
+
+cp SAPPOROBDD/src/INSTALL SAPPOROBDD/src/INSTALL.bak
+sed -i -e "s#cd ../BDDXc##" SAPPOROBDD/src/INSTALL
+
+cd SAPPOROBDD/src
+sh INSTALL
+cd ../../
+
+fi # update

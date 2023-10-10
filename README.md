@@ -22,34 +22,22 @@ TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 ## パッケージの導入
 
 コマンドラインから行います。
-wget と git コマンドが実行できる必要があります。
+curl, git, make コマンドが実行できる必要があります。
 以下のコマンドを実行します。または [downloader.sh](https://raw.githubusercontent.com/junkawahara/dd_package/main/downloader.sh) を手動でダウンロードして実行してください。
 
 ```
 # your_program は好きな名前
 mkdir your_program
 cd your_program
-wget https://github.com/junkawahara/dd_package/raw/main/downloader.sh
+curl -OL https://github.com/junkawahara/dd_package/raw/main/downloader.sh
 sh downloader.sh
 ```
 
 `downloader.sh` スクリプトを実行すると、your_program ディレクトリの中に、
 SAPPOROBDD、sbdd_helper、TdZdd がダウンロードされます。
 また、サンプル用の `Makefile` と `main.cpp` もダウンロードされます。
+SAPPOROBDD が自動でビルドされます。
 
-SAPPOROBDD は手動でビルドする必要があります。
-
-```
-cd SAPPOROBDD/src/
-sh INSTALL
-cd ../../
-ls SAPPOROBDD/lib
-# BDD64.a が表示されれば成功
-```
-
-ビルドに成功すると、SAPPOROBDD/lib ディレクトリの中に、BDD64.a が作成されます。
-
-ダウンロードされた `Makefile` と `main.cpp` ファイルはサンプルプログラムです。
 make でコンパイルして実行できる状態になっています。
 
 ```
@@ -65,6 +53,30 @@ make
 使い方を想定しています。Makefile に詳しい人は、Makefile を
 編集して、ソースファイルを自分の好きなファイル名にできます。
 
+
+## パッケージのアップデート
+
+パッケージをアップデートするには以下のコマンドを実行します
+（最新版の downloader.sh が必要です）。
+
+```
+sh downloader.sh --update
+```
+
+## SAPPOROBDD のビルド
+
+SAPPOROBDD は downloader.sh によって自動でビルドされますが、
+ビルドに失敗する場合は以下の通りにビルドできます。
+
+```
+cd SAPPOROBDD/src/
+sh INSTALL
+cd ../../
+ls SAPPOROBDD/lib
+# BDD64.a が表示されれば成功
+```
+
+ビルドに成功すると、SAPPOROBDD/lib ディレクトリの中に、BDD64.a が作成されます。
 
 ## マニュアル、リンク
 
