@@ -18,6 +18,7 @@ TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 * Windows 10 + Cygwin + gcc 11.4.0
 * Mac 12.5.1 + gcc (clang) 13.1.6
 * Linux Ubuntu 22.04 + gcc 11.4.0
+* Linux Ubuntu 20.04 + clang 10.0.0
 
 ## パッケージの導入
 
@@ -77,6 +78,11 @@ ls SAPPOROBDD/lib
 ```
 
 ビルドに成功すると、SAPPOROBDD/lib ディレクトリの中に、BDD64.a が作成されます。
+
+## 技術的な詳細と注意
+
+本パッケージでは、SAPPOROBDD の X11 機能を無効にするため、`SAPPOROBDD/src/BDDc/makefile` と `SAPPOROBDD/src/BDD+/Makefile` 、 `SAPPOROBDD/src/INSTALL` を書き換えています。
+書き換え前のファイルは .bak 拡張子を付けてバックアップをとっています。
 
 ## マニュアル、リンク
 
