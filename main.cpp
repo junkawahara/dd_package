@@ -1,4 +1,5 @@
 #include "SAPPOROBDD/include/ZBDD.h"
+#include "SAPPOROBDD/include/BDDCT.h"
 #include "sbdd_helper/SBDD_helper.h"
 
 // Delete commentout if necessary.
