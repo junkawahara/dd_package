@@ -16,6 +16,7 @@ TdZdd はトップダウン BDD/ZDD 構築ライブラリです。
 以下の環境で動作を確認しています。
 
 * Windows 10 + Cygwin + gcc 11.4.0
+* Windows 10 + WSL 2 + Ubuntu 22.04 + gcc 11.4.0
 * Mac 12.5.1 + gcc (clang) 13.1.6
 * Linux Ubuntu 22.04 + gcc 11.4.0
 * Linux Ubuntu 20.04 + clang 10.0.0
