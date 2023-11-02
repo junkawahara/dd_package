@@ -24,7 +24,8 @@ using namespace sbddh;
 int main() {
 
     // SAPPOROBDD functions
-    BDD_Init(1024, 1024 * 1024 * 1024);
+    BDD_Init(1024);
+    BDD_NewVar();
     BDD_NewVar();
     BDD_NewVar();
     ZBDD z1 = ZBDD(1); // representing {{}}
@@ -46,9 +47,9 @@ int main() {
     DdStructure<2> dd2 = sbdd2tdzdd(z4);
 
     bool b = (z1 == z2 && isConstant(z3) && dd1.zddCardinality() == "3"
-              && z4.Card() == 3 && dd2.zddCardinality() == "3");
+                && z4.Card() == 3 && dd2.zddCardinality() == "3");
     std::cout << "program " << (b ? "works" : "does not work")
-              << " correctly" << std::endl;
+                << " correctly" << std::endl;
 
     // GMP code example
     // DDIndex<int> ddindex(z4);
