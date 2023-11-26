@@ -5,7 +5,7 @@ main: main.cpp SAPPOROBDD/lib/BDD64.a
 
 # If you want to use GMP, use this.
 main-gmp: main.cpp SAPPOROBDD/lib/BDD64.a
-	g++ $(OPT) -DUSE_GMP main.cpp SAPPOROBDD/lib/BDD64.a -lgmp -lgmpxx -o main-gmp
+	g++ $(OPT) -DSBDDH_GMP main.cpp SAPPOROBDD/lib/BDD64.a -lgmp -lgmpxx -o main-gmp
 
 clean:
 	rm -rf *.o
